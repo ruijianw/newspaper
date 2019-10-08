@@ -52,6 +52,7 @@ class OutputFormatter(object):
 
         self.links_to_text()
         self.add_newline_to_br()
+        self.add_newline_to_p()
         self.add_newline_to_li()
         self.replace_with_text()
         self.remove_empty_tags()
@@ -82,6 +83,10 @@ class OutputFormatter(object):
 
     def add_newline_to_br(self):
         for e in self.parser.getElementsByTag(self.top_node, tag='br'):
+            e.text = r'\n'
+
+    def add_newline_to_p(self):
+        for e in self.parser.getElementsByTag(self.top_node, tag='p'):
             e.text = r'\n'
 
     def add_newline_to_li(self):
